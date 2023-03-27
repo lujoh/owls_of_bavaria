@@ -1,21 +1,16 @@
 import './App.css';
-import React, {useEffect, useRef} from 'react';
-
-
+import MapWindow from './components/MapWindow'
+import Sidebar from './components/Sidebar';
 
 function App() {
-  const elementRef = useRef();
-
-  useEffect(() => {
-    import("./data/MapStructure").then(
-      app => app.initialize(elementRef.current)
-    );
-  }, []);
 
   return (
-    <div className="App">
-      <header><h1>Owl Dashboard</h1></header>
-      <div id="MapDiv" ref={elementRef}></div>
+    <div className="app">
+      <header className='app_header'><h1>Owl Dashboard</h1></header>
+      <div className='app_row'>
+        <MapWindow />
+        <Sidebar />
+      </div>
     </div>
   )
 }

@@ -1,0 +1,5 @@
+.mapWindow{
+    min-height: 100px;
+    min-height: 80vh;
+    flex: 2 1 80%;
+}
