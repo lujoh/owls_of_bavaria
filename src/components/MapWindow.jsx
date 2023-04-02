@@ -1,15 +1,22 @@
 import './MapWindow.css';
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import {getOwls} from '../data/getOwls';
 
 
 
 function MapWindow() {
   const elementRef = useRef();
+  const [owlData, setOwldata] = useState([]);
 
   useEffect(() => {
     import("../data/initializeMap").then(
       app => app.initialize(elementRef.current)
     );
+    const getOwlData = async () => {
+      const response = await getOwls()
+      setOwldata(response);
+    }
+    getOwlData();
   }, []);
 
   return (
@@ -17,4 +24,4 @@ function MapWindow() {
   )
 }
 
-export default MapWindow
+export default MapWindow;

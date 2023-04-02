@@ -21,10 +21,15 @@ export const view = new MapView({
         zoom: 12
       }))
       .then(_ => {
-        console.log("Map and View are ready");
+        console.log("Map and View are ready.");
       })
       .catch(function(err) {
-        console.error("MapView rejected:", err);
+        if(import.meta.env.VITE_DEBUG){
+          console.error("MapView rejected:", err);
+        } else {
+          console.error("There was an Error Loading the Map.");
+        }
+        
       });
     return () => {
       view.container = null;
