@@ -6,12 +6,12 @@ const graphics = (data) => {
         return new Graphic({
             attributes: {
                 ObjectId: observation.id,
-                species_name: observation.species_guess,
+                species_name: observation.taxon.preferred_common_name,
                 species_scientific: observation.taxon.name,
                 license_code: observation.license_code,
-                observation_date: observation.observed_on
-                // photo_attribution: observation.default_photo.attribution,
-                // photo_url: observation.default_photo.url
+                observation_date: observation.observed_on,
+                photo_attribution: observation.observation_photos[0].photo.attribution,
+                photo_url: observation.observation_photos[0].photo.url
             },
             geometry: {
                 type: "point",
@@ -43,7 +43,7 @@ export const loadOwlFeatureLayer = (data, webmap) => {
             symbol: {
                 type: "simple-marker",
                 color: "#102A44",
-                outline: {    
+                outline: {
                     color: "#598DD8",
                     width: 2
                 }
@@ -51,16 +51,27 @@ export const loadOwlFeatureLayer = (data, webmap) => {
         },
         popupTemplate: {
             title: "Owl Observation",
-            content: [{
-                type: "fields",
-                fieldInfos: [
-                    {
-                        fieldName: "species_name",
-                        label: "Species",
-                        visible: true
-                    }
-                ]
-            }]
+            content: [
+                {
+                    type: "text",
+                    text: "<p><b>{species_name}</b></p>" +
+                        "<p><em>{species_scientific}</em></p>" +
+                        "<p>Observed on {observation_date}</p>"
+                },
+                {
+                    type: "media",
+                    mediaInfos: [
+                        {
+                            title: "{species_name}",
+                            type: "image",
+                            caption: "{photo_attribution}",
+                            value: {
+                                sourceURL: "{photo_url}"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         objectIdField: "ObjectId",
         fields: [
@@ -72,6 +83,26 @@ export const loadOwlFeatureLayer = (data, webmap) => {
             {
                 name: "species_name",
                 alias: "species_name",
+                type: "string"
+            },
+            {
+                name: "species_scientific",
+                alias: "species_scientific",
+                type: "string"
+            },
+            {
+                name: "observation_date",
+                alias: "observation_date",
+                type: "string"
+            },
+            {
+                name: "photo_attribution",
+                alias: "photo_attribution",
+                type: "string"
+            },
+            {
+                name: "photo_url",
+                alias: "photo_url",
                 type: "string"
             }
         ]
