@@ -54,16 +54,10 @@ export const loadOwlFeatureLayer = (data, webmap) => {
             title: "Owl Observation",
             content: [
                 {
-                    type: "text",
-                    text: "<p><b>{species_name}</b></p>" +
-                        "<p><em>{species_scientific}</em></p>" +
-                        "<p>Observed on {observation_date}</p>"
-                },
-                {
                     type: "media",
                     mediaInfos: [
                         {
-                            title: "{species_name}",
+                            title: "<b>{species_name}</b>",
                             type: "image",
                             caption: "{photo_attribution}",
                             value: {
@@ -71,7 +65,12 @@ export const loadOwlFeatureLayer = (data, webmap) => {
                             }
                         }
                     ]
-                }
+                },
+                {
+                    type: "text",
+                    text: "<p><em>{species_scientific}</em></p>" +
+                        "<p>Observed on {observation_date}</p>"
+                },
             ]
         },
         objectIdField: "ObjectId",
