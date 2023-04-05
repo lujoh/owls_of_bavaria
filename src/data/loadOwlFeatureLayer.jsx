@@ -11,7 +11,8 @@ const graphics = (data) => {
                 license_code: observation.license_code,
                 observation_date: observation.observed_on,
                 photo_attribution: observation.observation_photos[0].photo.attribution,
-                photo_url: observation.observation_photos[0].photo.url
+                // replacing sqare with medium retrieves a larger sized image
+                photo_url: observation.observation_photos[0].photo.url.replace("square", "medium")
             },
             geometry: {
                 type: "point",
