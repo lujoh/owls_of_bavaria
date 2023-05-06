@@ -8,7 +8,6 @@ export const getOwls = async (owlData) => {
     let results = []
     //retrieve all results in case there is more than one page worth
     while (!reached_end){
-        console.log("loop last id=" + last_id + " total_results=" + total_results + " total retrieved=" + total_retrieved)
         let query_result = await runOwlQuery(last_id);
         console.log(query_result);
         if (!query_result || query_result.length == 0){
