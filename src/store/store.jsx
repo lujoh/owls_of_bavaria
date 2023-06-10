@@ -1,6 +1,6 @@
 import { configureStore, applyMiddleware, compose} from '@reduxjs/toolkit';
 // import reducers
-import mapReducer from '../reducer/map/mapSlice';
+import mapReducer from '../features/map/mapSlice';
 //import middleware
 
 export default configureStore({
