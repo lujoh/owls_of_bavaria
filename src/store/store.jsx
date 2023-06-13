@@ -1,11 +1,11 @@
-import { configureStore, applyMiddleware, compose} from '@reduxjs/toolkit';
+import { configureStore} from '@reduxjs/toolkit';
 // import reducers
 import mapReducer from '../features/map/mapSlice';
-//import middleware
+import owlReducer from '../features/owls/owlSlice';
 
 export default configureStore({
   reducer: {
     map: mapReducer,
-    // middleware: [mapMiddleWare, ...getDefaultMiddleware()]
+    owl: owlReducer
   }
 })

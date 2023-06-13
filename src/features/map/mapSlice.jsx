@@ -1,13 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {webmap, view} from './loadMap';
+import { loadOwlFeatureLayer } from './loadOwlFeatureLayer';
 
 
-export const initializeMap = createAsyncThunk('map/initializeMap', async (container, { getState }) => {
-  const currentStatus = selectMapStatus(getState())
+export const initializeMap = createAsyncThunk('map/initializeMap', async (container) => {
   view.container = container;
   return view.when(() =>{
   })
 
+})
+
+export const addOwlLayer = createAsyncThunk('map/addOwlLayer', async (_, {getState}) => {
+  const data = getState().owl;
+  return loadOwlFeatureLayer(data, webmap);
 })
 
 
@@ -19,9 +24,7 @@ export const mapSlice = createSlice({
     error: ""
   },
   reducers: {
-    addOwlLayer: state => {
-      state.owlLayerLoaded = "loaded"
-    }
+    
   },
   extraReducers(builder){
     builder
@@ -35,13 +38,23 @@ export const mapSlice = createSlice({
       state.baseLoaded = "error";
       state.error = action.error.message;
     })
+    .addCase(addOwlLayer.fulfilled, (state) => {
+      state.owlLayerLoaded = "loaded";
+    })
+    .addCase(addOwlLayer.rejected, (state, action) => {
+      state.owlLayerLoaded = "error";
+      state.error = action.error.message;
+    })
+    .addCase(addOwlLayer.pending, (state => {
+      state.owlLayerLoaded = "pending";
+    }))
   }
-})
+});
 
 
 
-export const { loadMap, addOwlLayer } = mapSlice.actions
+export default mapSlice.reducer;
 
-export default mapSlice.reducer
+export const selectMapStatus = state => state.map.baseLoaded;
 
-export const selectMapStatus = state => state.map.baseLoaded
+export const selectOwlLayerStatus = state => state.map.owlLayerLoaded;
