@@ -11,5 +11,6 @@ This web mapping application is being built in honor of my mother who enjoys bir
 ## Tools Used
 
 * React using Vite
+* Redux
 * ESRI's ArcGIS Maps SDK for JavaScript
 * iNaturalist API
