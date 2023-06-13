@@ -2,22 +2,25 @@ import Graphic from '@arcgis/core/Graphic';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 
 const graphics = (data) => {
-    var graphics = data.map((observation) => {
-        return new Graphic({
+    let graphics = [];
+    for (const observation_id in data.owls){
+        const observation = data.owls[observation_id];
+        const taxon = data.taxa[observation.taxon_id];
+        graphics.push(new Graphic({
             attributes: {
                 ObjectId: observation.id,
-                species_name: observation.taxon.preferred_common_name,
-                species_scientific: observation.taxon.name,
+                species_name: taxon.species_name,
+                species_scientific: taxon.species_scientific,
                 license_code: observation.license_code,
-                observation_date: observation.observed_on,
-                photo_attribution: observation.observation_photos[0].photo.attribution,
+                observation_date: observation.observation_date,
+                photo_attribution: observation.photo_attribution,
                 // replacing sqare with medium retrieves a larger sized image
-                photo_url: observation.observation_photos[0].photo.url.replace("square", "medium")
+                photo_url: observation.photo_url.replace("square", "medium")
             },
             geometry: {
                 type: "point",
-                longitude: observation.geojson.coordinates[0],
-                latitude: observation.geojson.coordinates[1]
+                longitude: observation.longitude,
+                latitude: observation.latitude
             },
             symbol: {
                 //use a simple marker for now
@@ -28,15 +31,13 @@ const graphics = (data) => {
                     width: 2
                 }
             }
-        })
-    })
+        }))
+    }
     return graphics;
 }
 
-export const loadOwlFeatureLayer = (data, webmap) => {
+export const loadOwlFeatureLayer = async (data, webmap) => {
     var owlGraphics = graphics(data);
-    console.log("getting graphics")
-    console.log(owlGraphics);
     const featureLayer = new FeatureLayer({
         source: owlGraphics,
         renderer: {

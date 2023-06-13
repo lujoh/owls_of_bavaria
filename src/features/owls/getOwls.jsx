@@ -1,6 +1,6 @@
 // Retrieve Owl data from iNaturalist
 export const getOwls = async (owlData) => {
-    if (owlData && owlData.length > 0){
+    if (owlData.status != "not loaded" && owlData.status != "reload" || owlData.owls.length == 0){
         return owlData;
     }
     let reached_end = false;
@@ -9,7 +9,6 @@ export const getOwls = async (owlData) => {
     //retrieve all results in case there is more than one page worth
     while (!reached_end){
         let query_result = await runOwlQuery(last_id);
-        console.log(query_result);
         if (!query_result || query_result.length == 0){
             reached_end = true;
             continue;
@@ -22,7 +21,40 @@ export const getOwls = async (owlData) => {
             reached_end = true;
         }
     }
-    return results;
+    let formatted_results = formatOwlData(results);
+    return formatted_results;
+}
+
+function formatOwlData(input){
+    const output = {
+        owls: {},
+        taxa: {}
+    };
+    for (const observation of input){
+        output.owls[observation.id] = {
+            id: observation.id,
+            licence_code: observation.license_code,
+            observation_date: observation.observed_on,
+            photo_attribution: observation.photos ?observation.photos[0].attribution : '',
+            photo_url: observation.photos ? observation.photos[0].url : '',
+            longitude: observation.geojson.coordinates[0],
+            latitude: observation.geojson.coordinates[1],
+            taxon_id: observation.taxon.id
+        };
+        if (observation.taxon.id in output.taxa){
+            output.taxa[observation.taxon.id].count ++;
+        } else {
+            output.taxa[observation.taxon.id] = {
+                id: observation.taxon.id,
+                species_name: observation.taxon.preferred_common_name,
+                species_scientific: observation.taxon.name,
+                count: 1,
+                threatened: observation.taxon.threatened,
+                native: observation.taxon.native
+            };
+        }
+    }
+    return output;
 }
 
 //function to retrieve the next 200 results from iNaturalist based on the last retrieved id
