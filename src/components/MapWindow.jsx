@@ -1,9 +1,8 @@
 import './MapWindow.css';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {addOwlLayer, selectMapStatus, initializeMap, selectOwlLayerStatus} from '../features/map/mapSlice';
 import {selectOwls, selectOwlStatus, getOwlData} from '../features/owls/owlSlice';
-import { loadOwlFeatureLayer } from '../features/map/loadOwlFeatureLayer';
 
 
 function MapWindow() {
