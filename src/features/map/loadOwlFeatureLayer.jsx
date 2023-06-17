@@ -5,7 +5,7 @@ const graphics = (data) => {
     let graphics = [];
     for (const observation_id in data.owls){
         const observation = data.owls[observation_id];
-        const taxon = data.taxa[observation.taxon_id];
+        const taxon = data.taxaById[observation.taxon_id];
         graphics.push(new Graphic({
             attributes: {
                 ObjectId: observation.id,

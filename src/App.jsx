@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className="app">
-      <header className='app_header'><h1>Owl Dashboard</h1></header>
+      <header className='app_header'><h1>Owls of Bavaria</h1></header>
       <div className='app_row'>
         <MapWindow />
         <Sidebar />

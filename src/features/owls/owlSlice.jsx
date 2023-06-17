@@ -9,7 +9,8 @@ export const owlSlice = createSlice({
     name: 'owl',
     initialState: {
         owls: {},
-        taxa: {},
+        taxaById: {},
+        taxaList: [],
         status: 'not loaded',
         error: ''
     },
@@ -20,7 +21,8 @@ export const owlSlice = createSlice({
         builder
             .addCase(getOwlData.fulfilled, (state, action) => {
                 state.owls = action.payload.owls;
-                state.taxa = action.payload.taxa;
+                state.taxaById = action.payload.taxaById;
+                state.taxaList = action.payload.taxaList;
                 state.status = "loaded";
             })
             .addCase(getOwlData.rejected, (state, action) => {
@@ -36,8 +38,8 @@ export const selectOwlData = state => state.owl;
 
 export const selectOwls = state => state.owl.owls;
 
-export const selectTaxa = state => state.owl.taxa;
+export const selectTaxa = state => state.owl.taxaList;
 
-export const selectTaxaById = (state, taxonId) => state.owl.taxa[taxonId];
+export const selectTaxaById = (state, taxonId) => state.owl.taxaById[taxonId];
 
 export const selectOwlStatus = state => state.owl.status;

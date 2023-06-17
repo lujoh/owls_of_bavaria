@@ -28,7 +28,8 @@ export const getOwls = async (owlData) => {
 function formatOwlData(input){
     const output = {
         owls: {},
-        taxa: {}
+        taxaById: {},
+        taxaList: []
     };
     for (const observation of input){
         output.owls[observation.id] = {
@@ -41,10 +42,10 @@ function formatOwlData(input){
             latitude: observation.geojson.coordinates[1],
             taxon_id: observation.taxon.id
         };
-        if (observation.taxon.id in output.taxa){
-            output.taxa[observation.taxon.id].count ++;
+        if (observation.taxon.id in output.taxaById){
+            output.taxaById[observation.taxon.id].count ++;
         } else {
-            output.taxa[observation.taxon.id] = {
+            output.taxaById[observation.taxon.id] = {
                 id: observation.taxon.id,
                 species_name: observation.taxon.preferred_common_name,
                 species_scientific: observation.taxon.name,
@@ -52,6 +53,7 @@ function formatOwlData(input){
                 threatened: observation.taxon.threatened,
                 native: observation.taxon.native
             };
+            output.taxaList.push(observation.taxon.id);
         }
     }
     return output;
