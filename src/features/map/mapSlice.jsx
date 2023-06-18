@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {webmap, view} from './loadMap';
+import {webmap, view, background} from './loadMap';
 import { loadOwlFeatureLayer } from './loadOwlFeatureLayer';
 
 
 export const initializeMap = createAsyncThunk('map/initializeMap', async (container) => {
   view.container = container;
+  webmap.add(background);
   return view.when(() =>{
   })
 
