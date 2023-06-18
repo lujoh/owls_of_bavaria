@@ -1,6 +1,7 @@
 .speciesSection{
     flex-direction: column;
     overflow: scroll;
+    background-color: #404040;
 }
 .speciesSection h2{
     background-color: #598DD8;

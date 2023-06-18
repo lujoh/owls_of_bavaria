@@ -1,8 +1,7 @@
 div.speciesCard{
-    margin:4px 0;
-    background-color: #404040;
+    border-bottom: 1px solid #e6e6e6 ;
     color: #e6e6e6;
-    padding: 3px;
+    padding: 4px;
 }
 .speciesCard p{
     font-style: italic;

@@ -6,7 +6,7 @@ function SpeciesCard({taxonId}) {
     const taxon = useSelector((state) => selectTaxaById(state, taxonId));
  return (
     <div key={taxonId} className='speciesCard'>
-        <h3>{taxon.species_name} ({taxon.count} Observations)</h3>
+        <p><b>{taxon.species_name}</b> ({taxon.count} Observations)</p>
         <p>{taxon.species_scientific}</p>
         <p>
             {taxon.threatened ? "threatened" : "not threatened"}
