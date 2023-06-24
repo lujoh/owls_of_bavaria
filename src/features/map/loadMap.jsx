@@ -10,8 +10,18 @@ export const webmap = new Map({
 
 export const view = new MapView({
     map: webmap,
-    center: [11.4, 48.7],
-    zoom: 7
+    center: [11.4, 49.0],
+    zoom: 7,
+    constraints:{
+        geometry: {
+            type: "extent",
+            xmin: 9.8,
+            ymin: 47.1,
+            xmax: 14.9,
+            ymax: 51.6
+        },
+        minZoom: 5
+    }
    });
 
 export const background = new GeoJSONLayer({
