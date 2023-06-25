@@ -2,6 +2,7 @@ import Map from "@arcgis/core/Map"
 import MapView from "@arcgis/core/views/MapView";
 import esriConfig from "@arcgis/core/config";
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer"
+import NotBayernURL from "../../assets/NotBayern.geojson?url"
 
 esriConfig.apiKey = import.meta.env.VITE_ARCGIS_API_KEY;
 export const webmap = new Map({
@@ -25,7 +26,7 @@ export const view = new MapView({
    });
 
 export const background = new GeoJSONLayer({
-    url: import.meta.env.VITE_ROOT_PATH + "/src/assets/NotBayern.geojson",
+    url: NotBayernURL,
     renderer: {
         type: "simple",
         symbol: {
