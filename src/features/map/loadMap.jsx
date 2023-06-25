@@ -25,7 +25,7 @@ export const view = new MapView({
    });
 
 export const background = new GeoJSONLayer({
-    url: "http://localhost:5173/src/assets/NotBayern.geojson",
+    url: import.meta.env.VITE_ROOT_PATH + "/src/assets/NotBayern.geojson",
     renderer: {
         type: "simple",
         symbol: {
