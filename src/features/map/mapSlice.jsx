@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {webmap, view, background} from './loadMap';
+import {webmap, view, background, owlFeatureLayer} from './loadMap';
 import { loadOwlFeatureLayer } from './loadOwlFeatureLayer';
 
 
@@ -13,7 +13,7 @@ export const initializeMap = createAsyncThunk('map/initializeMap', async (contai
 
 export const addOwlLayer = createAsyncThunk('map/addOwlLayer', async (_, {getState}) => {
   const data = getState().owl;
-  return loadOwlFeatureLayer(data, webmap);
+  return loadOwlFeatureLayer(data, webmap, owlFeatureLayer);
 })
 
 
