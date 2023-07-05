@@ -96,6 +96,11 @@ export const owlFeatureLayer = new FeatureLayer({
             type: "string"
         },
         {
+            name: "species_id",
+            alias: "species_id",
+            type: "string"
+        },
+        {
             name: "observation_date",
             alias: "observation_date",
             type: "string"
