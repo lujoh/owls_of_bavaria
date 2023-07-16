@@ -17,7 +17,8 @@ export const addOwlLayer = createAsyncThunk('map/addOwlLayer', async (_, {getSta
   return loadOwlFeatureLayer(data, webmap, owlFeatureLayer);
 })
 
-export const filterOwlLayer = createAsyncThunk('map/filterOwls', async (filters, {getState, rejectWithValue, fulfillWithValue}) => {
+export const filterOwlLayerBySpecies = createAsyncThunk('map/filterOwlLayerBySpecies', async (speciesId, {getState, rejectWithValue, fulfillWithValue}) => {
+  let filters = {...getState().filters, species: speciesId}
   if (!getState().owlLayerLoaded == "loaded"){
     return rejectWithValue(filters)
   }
@@ -33,7 +34,9 @@ export const mapSlice = createSlice({
     owlLayerLoaded: "not loaded",
     error: "",
     filterStatus: "not loaded",
-    filters: {}
+    filters: {
+      species: null
+    }
   },
   reducers: {
     
@@ -60,9 +63,13 @@ export const mapSlice = createSlice({
     .addCase(addOwlLayer.pending, (state => {
       state.owlLayerLoaded = "pending";
     }))
-    .addCase(filterOwlLayer.rejected, (state, action) => {
+    .addCase(filterOwlLayerBySpecies.rejected, (state, action) => {
       state.filterStatus = "error";
-      state.currentFilters = action.payload
+      state.filters = action.payload;
+    })
+    .addCase(filterOwlLayerBySpecies.fulfilled, (state, action) => {
+      state.filterStatus = "success";
+      state.filters = action.payload;
     })
   }
 });
@@ -74,3 +81,5 @@ export default mapSlice.reducer;
 export const selectMapStatus = state => state.map.baseLoaded;
 
 export const selectOwlLayerStatus = state => state.map.owlLayerLoaded;
+
+export const selectCurrentSpeciesFilter = state =>state.map.filters.species;

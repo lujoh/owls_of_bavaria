@@ -10,7 +10,7 @@ const graphics = (data) => {
                 ObjectId: observation.id,
                 species_name: taxon.species_name,
                 species_scientific: taxon.species_scientific,
-                species_id: ovservation.taxon_id,
+                species_id: observation.taxon_id,
                 license_code: observation.license_code,
                 observation_date: observation.observation_date,
                 photo_attribution: observation.photo_attribution,
