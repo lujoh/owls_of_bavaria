@@ -2,7 +2,8 @@ import './SpeciesCard.css'
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaxaById } from "../features/owls/owlSlice";
 import { filterOwlLayerBySpecies, selectCurrentSpeciesFilter } from '../features/map/mapSlice';
-import {MdFilterAltOff, MdFilterAlt} from "react-icons/md"
+import {MdFilterAltOff, MdFilterAlt, MdOutlineExpandMore, MdOutlineExpandLess} from "react-icons/md"
+import { useState } from 'react';
 
 function SpeciesCard({taxonId}) {
     const taxon = useSelector((state) => selectTaxaById(state, taxonId));
@@ -26,13 +27,34 @@ function SpeciesCard({taxonId}) {
         >
             <MdFilterAltOff />
         </button>
+    const showDetailsButton = <button 
+        aria-label='See more about {taxon.species_name}' 
+        onClick={() => setDetailVisibility(!detailVisibility)}
+        >
+            <MdOutlineExpandMore />
+        </button>
+    const hideDetailsButton = <button 
+        aria-label='Hide details for {taxon.species_name}' 
+        onClick={() => setDetailVisibility(!detailVisibility)}
+        >
+            <MdOutlineExpandLess />
+        </button>
+    const [detailVisibility, setDetailVisibility] = useState(false);
  return (
     <div key={taxonId} className='speciesCard'>
-        <div>
-            <p><b>{taxon.species_name}</b> ({taxon.count} Observations)</p>
-            {currentSpeciesFilter == taxonId ? removeFilterButton : addFilterButton}
+        <div className='speciesCard_main'>
+            <div className='speciesCard_title'>
+                <p><b>{taxon.species_name}</b></p>
+                <p>({taxon.count} Observations)</p>
+            </div>
+            
+            <div className='speciesCard_buttons'>
+                {currentSpeciesFilter == taxonId ? removeFilterButton : addFilterButton}
+                {detailVisibility ? hideDetailsButton : showDetailsButton}
+            </div>
         </div>
-        <div>
+        <div 
+        className={detailVisibility ? 'speciesCard_details_visible': 'speciesCard_details_hidden'}>
             <p>{taxon.species_scientific}</p>
             <p>
                 {taxon.threatened ? "threatened" : "not threatened"}

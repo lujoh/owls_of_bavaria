@@ -6,3 +6,24 @@ div.speciesCard{
 .speciesCard p{
     font-style: italic;
 }
+.speciesCard_main{
+    display: flex;
+}
+.speciesCard_title{
+    width: 80%;
+}
+.speciesCard_buttons{
+    width: 20%;
+}
+.speciesCard_buttons button{
+    background-color: transparent;
+    color: #e6e6e6;
+    border: none;
+    font-size: 20px;
+}
+.speciesCard_details_visible{
+    display: block;
+}
+.speciesCard_details_hidden{
+    display: none;
+}
