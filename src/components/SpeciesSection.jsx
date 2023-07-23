@@ -17,7 +17,9 @@ function SpeciesSection() {
     return (
         <section className='speciesSection'>
             <h2>Owl Species Observed</h2>
-            {taxaCardsContent}
+            <div className='speciesSection_cards'>
+                {taxaCardsContent}
+            </div>
         </section>
     )
 }

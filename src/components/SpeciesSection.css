@@ -1,8 +1,14 @@
 .speciesSection{
-    flex-direction: column;
     overflow: scroll;
     background-color: #404040;
 }
 .speciesSection h2{
     background-color: #598DD8;
 }
+@media screen and (max-width: 890px) {
+    .speciesSection_cards{
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+  }

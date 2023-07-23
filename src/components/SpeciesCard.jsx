@@ -45,7 +45,7 @@ function SpeciesCard({taxonId}) {
         <div className='speciesCard_main'>
             <div className='speciesCard_title'>
                 <p><b>{taxon.species_name}</b></p>
-                <p>({taxon.count} Observations)</p>
+                <p>({taxon.count}<span className='speciesCard_hide_mobile'> Observations</span>)</p>
             </div>
             
             <div className='speciesCard_buttons'>

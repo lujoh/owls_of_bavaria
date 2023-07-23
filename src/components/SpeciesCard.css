@@ -1,4 +1,4 @@
-div.speciesCard{
+.speciesCard{
     border-bottom: 1px solid #e6e6e6 ;
     color: #e6e6e6;
     padding: 4px;
@@ -19,11 +19,22 @@ div.speciesCard{
     background-color: transparent;
     color: #e6e6e6;
     border: none;
-    font-size: 20px;
+    font-size: 22px;
 }
 .speciesCard_details_visible{
     display: block;
 }
 .speciesCard_details_hidden{
     display: none;
+}
+@media screen and (max-width: 890px){
+    .speciesCard{
+        min-width: 140px;
+        border-right: 1px solid #e6e6e6 ;
+        border-bottom: none;
+        position: relative;
+    }
+    .speciesCard_hide_mobile{
+        display: none;
+    }
 }
