@@ -74,7 +74,7 @@ export const owlFeatureLayer = new FeatureLayer({
             {
                 type: "text",
                 text: "<p><em>{species_scientific}</em></p>" +
-                    "<p>Observed on {observation_date}</p>"
+                    "<p>Observed on {observation_date}</p>" + "{obscured}"
             },
         ]
     },
@@ -113,6 +113,11 @@ export const owlFeatureLayer = new FeatureLayer({
         {
             name: "photo_url",
             alias: "photo_url",
+            type: "string"
+        },
+        {
+            name: "obscured",
+            alias: "obscured",
             type: "string"
         }
     ]
