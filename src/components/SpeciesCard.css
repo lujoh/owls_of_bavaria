@@ -27,12 +27,17 @@
 .speciesCard_details_hidden{
     display: none;
 }
+.speciesCard_yellow_annotation{
+    color: #ffc3ff;
+}
+.speciesCard_green_annotation{
+    color: #66ffb3;
+}
 @media screen and (max-width: 890px){
     .speciesCard{
         min-width: 140px;
         border-right: 1px solid #e6e6e6 ;
         border-bottom: none;
-        position: relative;
     }
     .speciesCard_hide_mobile{
         display: none;

@@ -36,6 +36,7 @@ function formatOwlData(input){
             id: observation.id,
             licence_code: observation.license_code,
             observation_date: observation.observed_on,
+            obscured: observation.obscured,
             photo_attribution: observation.photos ?observation.photos[0].attribution : '',
             photo_url: observation.photos ? observation.photos[0].url : '',
             longitude: observation.geojson.coordinates[0],
