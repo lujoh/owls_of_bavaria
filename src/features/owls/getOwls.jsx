@@ -52,6 +52,7 @@ function formatOwlData(input){
                 species_scientific: observation.taxon.name,
                 count: 1,
                 threatened: observation.taxon.threatened,
+                photo: observation.taxon.default_photo.url,
                 native: observation.taxon.native
             };
             output.taxaList.push(observation.taxon.id);
