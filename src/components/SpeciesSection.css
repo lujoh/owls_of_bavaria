@@ -3,7 +3,8 @@
     background-color: #333333;
 }
 .speciesSection h2{
-    background-color: #598DD8;
+    background-color: #cc7a00;
+    padding: 2px;
 }
 @media screen and (max-width: 890px) {
     .speciesSection_cards{
