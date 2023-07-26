@@ -62,7 +62,7 @@ function SpeciesCard({taxonId}) {
             <p className={taxon.threatened ? "speciesCard_yellow_annotation" : "speciesCard_green_annotation"}>
                 {taxon.threatened ? "threatened" : "not threatened"}
             </p>
-            <p className={!taxon.native ? "speciesCard_yellow_annotation" : "speciesCard_green_annotation"}>
+            <p className={taxon.native ? "speciesCard_yellow_annotation" : "speciesCard_green_annotation"}>
                 {taxon.native ? "native" : "not native"}
             </p>
         </div>
