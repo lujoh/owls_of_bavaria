@@ -32,7 +32,7 @@ export const background = new GeoJSONLayer({
         type: "simple",
         symbol: {
             type: "simple-fill",
-            color: [197, 211, 220],
+            color: [219, 217, 218],
             outline: {
                 color: "black",
                 width: 0.2,
@@ -48,9 +48,9 @@ export const owlFeatureLayer = new FeatureLayer({
         type: "simple",
         symbol: {
             type: "simple-marker",
-            color: "#1a1400",
+            color: "#231d1f",
             outline: {
-                color: "#893f04",
+                color: "#cd2117",
                 width: 3.5
             }
         }
