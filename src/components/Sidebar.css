@@ -1,12 +1,12 @@
 .sidebar{
-    background: #aca9a8;
+    background: #EEE0CB;
     width: 20%;
     flex: 2 1 20%;
     display: flex;
     flex-direction: column;
     text-align: left;
     padding: 4px;
-    color: #1d2504;
+    color: #280003;
 }
 .sidebar div{
     padding: 4px;

@@ -1,13 +1,13 @@
 .speciesSection{
     overflow: scroll;
-    background-color: #7d6e62;
-    color: black;
+    background-color: #280003;
+    color: EEE0CB;
 }
 .speciesSection h2{
-    background-color: #b79b05;
+    background-color: #CD2117;
     padding: 3px;
-    /* border-bottom: 2px solid #5b6460; */
-    color:#1d2504;
+    border-bottom: 2px solid #EEE0CB;
+    color:#280003;
 }
 @media screen and (max-width: 890px) {
     .speciesSection_cards{
