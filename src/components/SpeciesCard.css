@@ -1,6 +1,6 @@
 .speciesCard{
-    border-bottom: 1px solid #FFCF94;
-    color: #FFCF94;
+    border-bottom: 1px solid #c5d3dc;
+    color: #c5d3dc;
     padding: 4px;
 }
 .speciesCard p{
@@ -17,7 +17,7 @@
 }
 .speciesCard_buttons button{
     background-color: transparent;
-    color: #FFCF94;
+    color: #c5d3dc;
     border: none;
     font-size: 22px;
 }
@@ -36,7 +36,7 @@
 @media screen and (max-width: 890px){
     .speciesCard{
         min-width: 140px;
-        border-right: 1px solid #FFCF94;
+        border-right: 1px solid #c5d3dc;
         border-bottom: none;
     }
     .speciesCard_main{
