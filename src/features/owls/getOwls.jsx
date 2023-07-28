@@ -58,6 +58,7 @@ function formatOwlData(input){
             output.taxaList.push(observation.taxon.id);
         }
     }
+    output.taxaList.sort((a, b) => output.taxaById[b].count - output.taxaById[a].count)
     return output;
 }
 
