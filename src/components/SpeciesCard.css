@@ -36,7 +36,7 @@
 @media screen and (max-width: 890px){
     .speciesCard{
         min-width: 140px;
-        border-right: 1px solid #e6e6e6 ;
+        border-right: 1px solid #050304 ;
         border-bottom: none;
     }
     .speciesCard_main{
