@@ -1,6 +1,6 @@
 .speciesCard{
-    border-bottom: 1px solid #e6e6e6 ;
-    color: #e6e6e6;
+    border-bottom: 1px solid #050304 ;
+    color: #050304;
     padding: 4px;
 }
 .speciesCard p{
@@ -17,7 +17,7 @@
 }
 .speciesCard_buttons button{
     background-color: transparent;
-    color: #e6e6e6;
+    color: #050304;
     border: none;
     font-size: 22px;
 }
@@ -27,11 +27,11 @@
 .speciesCard_details_hidden{
     display: none;
 }
-.speciesCard_yellow_annotation{
-    color: #ffbedb;
+.speciesCard_red_annotation{
+    color: #800033;
 }
 .speciesCard_green_annotation{
-    color: #99ff99;
+    color: #004d1a;
 }
 @media screen and (max-width: 890px){
     .speciesCard{
