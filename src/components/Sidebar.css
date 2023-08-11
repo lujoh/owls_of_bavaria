@@ -15,6 +15,15 @@
     font-size: 13px;
     line-height: 1.2;
 }
+a:link{
+  color: #c38b1a;
+}
+a:visited{
+  color: #e3a935;
+}
+a:hover{
+  color:#edc678;
+}
 @media screen and (max-width: 890px) {
   .sidebar{
     width: 100%;
