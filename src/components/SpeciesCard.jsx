@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTaxaById } from "../features/owls/owlSlice";
 import { filterOwlLayerBySpecies, selectCurrentSpeciesFilter } from '../features/map/mapSlice';
 import {MdFilterAltOff, MdFilterAlt, MdOutlineExpandMore, MdOutlineExpandLess} from "react-icons/md"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function SpeciesCard({taxonId}) {
+function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
     const taxon = useSelector((state) => selectTaxaById(state, taxonId));
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const addFilter = () => {
         dispatch(filterOwlLayerBySpecies(taxonId))
     }
@@ -40,6 +40,25 @@ function SpeciesCard({taxonId}) {
             <MdOutlineExpandLess />
         </button>
     const [detailVisibility, setDetailVisibility] = useState(false);
+    //set detailvisibility all in parent component to neutral if visibility gets changed from component
+    useEffect(() => {
+        if ((detailVisibility && detailVisibilityAll == "collapsed") 
+        || (!detailVisibility && detailVisibilityAll == "expanded")){
+            setDetailVisibilityAll("neutral");
+        }
+    }, [detailVisibility]); 
+    // set detail visibility if detailVisibilityAll from props changes to expanded or collapsed
+    //does nothing if it is set to neutral
+    useEffect(() => {
+        switch(detailVisibilityAll) {
+            case "expanded":
+                setDetailVisibility(true);
+                break;
+            case "collapsed":
+                setDetailVisibility(false);
+                break;
+        }
+    }, [detailVisibilityAll]); 
  return (
     <div key={taxonId} className='speciesCard'>
         <div className='speciesCard_main'>
