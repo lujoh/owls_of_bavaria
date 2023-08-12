@@ -16,6 +16,20 @@
 .speciesSection::-webkit-scrollbar-track{
     background: transparent;
 }
+.speciesSection_header{
+    border-bottom: 1px solid #050304;
+}
+.speciesSection_header div{
+    display: flex;
+}
+.speciesSection_header button{
+    background-color: #39352c;
+    color: #f0efed;
+    border: none;
+    padding: 2%;
+    margin: 1%;
+    border-radius: 5px;
+}
 .speciesSection h2{
     background-color: #c38b1a;
     padding: 2px;
