@@ -32,7 +32,7 @@ a:hover {
   background-color: #a9966b;
   color: #050304;
   scrollbar-color: #39352c #a9966b;
-  min-height: 100px;
+  min-height: 45px;
   border-bottom: 2px solid #39352c;
 }
 
@@ -45,6 +45,7 @@ a:hover {
   width: 100%;
   font-size: 1.3em;
   font-weight: 600;
+  min-height: 40px;
 }
 
 .sidebar_section::-webkit-scrollbar {
@@ -60,6 +61,14 @@ a:hover {
 
 .sidebar_section::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.sidebar_section_body_expanded {
+  display: block;
+}
+
+.sidebar_section_body_collapsed {
+  display: none;
 }
 
 @media screen and (max-width: 890px) {

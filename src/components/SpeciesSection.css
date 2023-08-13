@@ -4,7 +4,7 @@
 .speciesSection_header div{
     display: flex;
 }
-.speciesSection_header div button{
+.speciesSection_button_section button{
     background-color: #39352c;
     color: #f0efed;
     border: none;
