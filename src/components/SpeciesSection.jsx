@@ -18,9 +18,9 @@ function SpeciesSection() {
     }
     const dispatch = useDispatch();
     return (
-        <section className='speciesSection'>
+        <section className='sidebar_section'>
             <div className='speciesSection_header'>
-                <h2>Owl Species Observed</h2>
+                <button className='sidebar_section_button'>Owl Species Observed</button>
                 <div>
                     <button onClick={() => setDetailVisibilityAll("expanded")}>Expand All Species</button>
                     <button onClick={() => setDetailVisibilityAll("collapsed")}>Collapse All Species</button>
