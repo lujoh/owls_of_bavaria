@@ -18,7 +18,7 @@ export const addOwlLayer = createAsyncThunk('map/addOwlLayer', async (_, {getSta
 })
 
 export const filterOwlLayerBySpecies = createAsyncThunk('map/filterOwlLayerBySpecies', async (speciesId, {getState, rejectWithValue, fulfillWithValue}) => {
-  let filters = {...getState().filters, species: speciesId}
+  let filters = {...getState().map.filters, species: speciesId}
   if (!getState().owlLayerLoaded == "loaded"){
     return rejectWithValue(filters)
   }
@@ -26,6 +26,14 @@ export const filterOwlLayerBySpecies = createAsyncThunk('map/filterOwlLayerBySpe
   return fulfillWithValue(filters);
 })
 
+export const filterObscuredSpecies = createAsyncThunk('map/filterObscuredSpecies', async (obscured, {getState, rejectWithValue, fulfillWithValue}) => {
+  let filters = {...getState().map.filters, obscured: obscured}
+  if (!getState().owlLayerLoaded == "loaded"){
+    return rejectWithValue(filters)
+  }
+  loadFilterEffect(owlFeatureLayer, filters);
+  return fulfillWithValue(filters);
+})
 
 export const mapSlice = createSlice({
   name: 'map',
@@ -35,7 +43,8 @@ export const mapSlice = createSlice({
     error: "",
     filterStatus: "not loaded",
     filters: {
-      species: null
+      species: null,
+      obscured: false
     }
   },
   reducers: {
@@ -71,6 +80,14 @@ export const mapSlice = createSlice({
       state.filterStatus = "success";
       state.filters = action.payload;
     })
+    .addCase(filterObscuredSpecies.rejected, (state, action) => {
+      state.filterStatus = "error";
+      state.filters = action.payload;
+    })
+    .addCase(filterObscuredSpecies.fulfilled, (state, action) => {
+      state.filterStatus = "success";
+      state.filters = action.payload;
+    })
   }
 });
 
@@ -83,3 +100,5 @@ export const selectMapStatus = state => state.map.baseLoaded;
 export const selectOwlLayerStatus = state => state.map.owlLayerLoaded;
 
 export const selectCurrentSpeciesFilter = state =>state.map.filters.species;
+
+export const selectCurrentFilters = state => state.map.filters

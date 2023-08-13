@@ -12,7 +12,8 @@ const graphics = (data) => {
                 species_scientific: taxon.species_scientific,
                 species_id: observation.taxon_id,
                 license_code: observation.license_code,
-                obscured: observation.obscured ? "<p>The location of this observation has been obscured.</p>" : "",
+                obscured_text: observation.obscured ? "<p>The location of this observation has been obscured.</p>" : "",
+                obscured: observation.obscured ? 1 : 0,
                 observation_date: observation.observation_date,
                 photo_attribution: observation.photo_attribution,
                 // replacing sqare with medium retrieves a larger sized image
