@@ -10,7 +10,7 @@ import { MdOutlineExpandMore } from 'react-icons/md';
 function SpeciesSection({expandedSection, setExpandedSection}) {
     const taxa = useSelector(selectTaxa);
     const [detailVisibilityAll, setDetailVisibilityAll] = useState("collapsed");
-    const owlStatus = useSelector(selectOwlStatus)
+    const owlStatus = useSelector(selectOwlStatus);
     let taxaCardsContent = <p>Loading Owl Data...</p>
     if (owlStatus == "loaded") {
         taxaCardsContent = taxa.map((taxonId) => {

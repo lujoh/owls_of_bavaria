@@ -35,6 +35,16 @@ export const filterObscuredSpecies = createAsyncThunk('map/filterObscuredSpecies
   return fulfillWithValue(filters);
 })
 
+export const filterOwlLayerByYear = createAsyncThunk('map/filterOwlLayerByYear', async (year, {getState, rejectWithValue, fulfillWithValue}) => {
+  let filters = {...getState().map.filters,
+  year: year};
+  if (!getState().owlLayerLoaded == "loaded"){
+    return rejectWithValue(filters)
+  }
+  loadFilterEffect(owlFeatureLayer, filters);
+  return fulfillWithValue(filters);
+})
+
 export const mapSlice = createSlice({
   name: 'map',
   initialState: {
@@ -44,7 +54,8 @@ export const mapSlice = createSlice({
     filterStatus: "not loaded",
     filters: {
       species: null,
-      obscured: false
+      obscured: false,
+      year: null
     }
   },
   reducers: {
@@ -85,6 +96,14 @@ export const mapSlice = createSlice({
       state.filters = action.payload;
     })
     .addCase(filterObscuredSpecies.fulfilled, (state, action) => {
+      state.filterStatus = "success";
+      state.filters = action.payload;
+    })
+    .addCase(filterOwlLayerByYear.rejected, (state, action) => {
+      state.filterStatus = "error";
+      state.filters = action.payload;
+    })
+    .addCase(filterOwlLayerByYear.fulfilled, (state, action) => {
       state.filterStatus = "success";
       state.filters = action.payload;
     })

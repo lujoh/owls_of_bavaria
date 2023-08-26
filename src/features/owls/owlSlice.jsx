@@ -11,6 +11,10 @@ export const owlSlice = createSlice({
         owls: {},
         taxaById: {},
         taxaList: [],
+        years: {
+            min: new Date().getFullYear(),
+            max: new Date().getFullYear()
+        },
         status: 'not loaded',
         error: ''
     },
@@ -24,6 +28,7 @@ export const owlSlice = createSlice({
                 state.taxaById = action.payload.taxaById;
                 state.taxaList = action.payload.taxaList;
                 state.status = "loaded";
+                state.years = action.payload.years
             })
             .addCase(getOwlData.rejected, (state, action) => {
                 state.status = "error";
@@ -43,3 +48,5 @@ export const selectTaxa = state => state.owl.taxaList;
 export const selectTaxaById = (state, taxonId) => state.owl.taxaById[taxonId];
 
 export const selectOwlStatus = state => state.owl.status;
+
+export const selectYears = state => state.owl.years;

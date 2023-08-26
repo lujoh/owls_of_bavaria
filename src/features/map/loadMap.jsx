@@ -106,6 +106,11 @@ export const owlFeatureLayer = new FeatureLayer({
             type: "string"
         },
         {
+            name: "observation_year",
+            alias: "observation_year",
+            type: "integer"
+        },
+        {
             name: "photo_attribution",
             alias: "photo_attribution",
             type: "string"

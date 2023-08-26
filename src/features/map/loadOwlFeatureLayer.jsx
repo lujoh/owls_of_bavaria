@@ -15,6 +15,7 @@ const graphics = (data) => {
                 obscured_text: observation.obscured ? "<p>The location of this observation has been obscured.</p>" : "",
                 obscured: observation.obscured ? 1 : 0,
                 observation_date: observation.observation_date,
+                observation_year: observation.observation_year,
                 photo_attribution: observation.photo_attribution,
                 // replacing sqare with medium retrieves a larger sized image
                 photo_url: observation.photo_url.replace("square", "medium")

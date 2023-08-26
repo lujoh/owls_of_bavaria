@@ -26,16 +26,23 @@ export const getOwls = async (owlData) => {
 }
 
 function formatOwlData(input){
+    let current_year= new Date().getFullYear();
     const output = {
         owls: {},
         taxaById: {},
-        taxaList: []
+        taxaList: [],
+        years: {
+            min: current_year,
+            max: current_year
+        }
     };
     for (const observation of input){
+        let year = observation.observed_on_details ? observation.observed_on_details.year : observation.created_at_details.year;
         output.owls[observation.id] = {
             id: observation.id,
             licence_code: observation.license_code,
             observation_date: observation.observed_on,
+            observation_year: year,
             obscured: observation.obscured,
             photo_attribution: observation.photos ?observation.photos[0].attribution : '',
             photo_url: observation.photos ? observation.photos[0].url : '',
@@ -56,6 +63,9 @@ function formatOwlData(input){
                 native: observation.taxon.native
             };
             output.taxaList.push(observation.taxon.id);
+        }
+        if (year < output.years.min){
+            output.years.min = year;
         }
     }
     output.taxaList.sort((a, b) => output.taxaById[b].count - output.taxaById[a].count)
