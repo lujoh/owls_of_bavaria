@@ -1,7 +1,7 @@
 import './SpeciesCard.css'
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaxaById } from "../features/owls/owlSlice";
-import { filterOwlLayerBySpecies, selectCurrentSpeciesFilter } from '../features/map/mapSlice';
+import { applyFilters, selectCurrentSpeciesFilter } from '../features/map/mapSlice';
 import {MdFilterAltOff, MdFilterAlt, MdOutlineExpandMore, MdOutlineExpandLess} from "react-icons/md"
 import { useState, useEffect } from 'react';
 
@@ -9,10 +9,10 @@ function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
     const taxon = useSelector((state) => selectTaxaById(state, taxonId));
     const dispatch = useDispatch();
     const addFilter = () => {
-        dispatch(filterOwlLayerBySpecies(taxonId))
+        dispatch(applyFilters({species: taxonId}))
     }
     const removeFilter = () => {
-        dispatch(filterOwlLayerBySpecies(null))
+        dispatch(applyFilters({species: null}))
     }
     const currentSpeciesFilter = useSelector((state) => selectCurrentSpeciesFilter(state))
     const addFilterButton = <button

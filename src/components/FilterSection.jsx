@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './FilterSection.css';
 import { MdOutlineExpandMore } from 'react-icons/md';
-import { filterObscuredSpecies, filterOwlLayerByYear, selectCurrentFilters } from '../features/map/mapSlice';
+import { applyFilters, selectCurrentFilters } from '../features/map/mapSlice';
 import { selectYears } from '../features/owls/owlSlice';
 import { useRef } from 'react';
 
@@ -27,7 +27,7 @@ function FilterSection({expandedSection, setExpandedSection}){
         } else {
             yearFilter = target.value;
         }
-        dispatch(filterOwlLayerByYear(yearFilter));
+        dispatch(applyFilters({year: yearFilter}));
     }
     return(
         <section className='sidebar_section'>
@@ -43,7 +43,7 @@ function FilterSection({expandedSection, setExpandedSection}){
                     <label>
                         <input type='checkbox' id='obscured' name='obscured' 
                         checked={currentFilters.obscured ? 'checked': ''}
-                        onChange={(e) =>dispatch(filterObscuredSpecies(e.target.checked))} /> 
+                        onChange={(e) =>dispatch(applyFilters({obscured: e.target.checked}))} /> 
                         Hide obscured locations
                     </label> 
                     <br />

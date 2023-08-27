@@ -1,7 +1,7 @@
 import './SpeciesSection.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTaxa, selectOwlStatus } from '../features/owls/owlSlice';
-import { filterOwlLayerBySpecies } from '../features/map/mapSlice';
+import { applyFilters} from '../features/map/mapSlice';
 import SpeciesCard from './SpeciesCard';
 import { useState } from 'react';
 import { MdOutlineExpandMore } from 'react-icons/md';
@@ -32,7 +32,7 @@ function SpeciesSection({expandedSection, setExpandedSection}) {
                 <div className='speciesSection_button_section'>
                         <button onClick={() => setDetailVisibilityAll("expanded")}>Expand All Species</button>
                         <button onClick={() => setDetailVisibilityAll("collapsed")}>Collapse All Species</button>
-                        <button onClick={() => dispatch(filterOwlLayerBySpecies(null))}>Clear Filters</button>
+                        <button onClick={() => dispatch(applyFilters({species: null}))}>Clear Filters</button>
                     </div>
                     <div className='speciesSection_cards'>
                         {taxaCardsContent}

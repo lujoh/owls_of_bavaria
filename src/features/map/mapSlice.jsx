@@ -17,32 +17,18 @@ export const addOwlLayer = createAsyncThunk('map/addOwlLayer', async (_, {getSta
   return loadOwlFeatureLayer(data, webmap, owlFeatureLayer);
 })
 
-export const filterOwlLayerBySpecies = createAsyncThunk('map/filterOwlLayerBySpecies', async (speciesId, {getState, rejectWithValue, fulfillWithValue}) => {
-  let filters = {...getState().map.filters, species: speciesId}
-  if (!getState().owlLayerLoaded == "loaded"){
-    return rejectWithValue(filters)
+export const applyFilters = createAsyncThunk('map/applyFilters', async (filter, {getState, rejectWithValue, fulfillWithValue}) => {
+  const filters_prev = getState().map.filters;
+  const filters_new = {
+    species: "species" in filter ? filter.species : filters_prev.species,
+    obscured: "obscured" in filter ? filter.obscured : filters_prev.obscured,
+    year: "year" in filter ? filter.year : filters_prev.year
   }
-  loadFilterEffect(owlFeatureLayer, filters);
-  return fulfillWithValue(filters);
-})
-
-export const filterObscuredSpecies = createAsyncThunk('map/filterObscuredSpecies', async (obscured, {getState, rejectWithValue, fulfillWithValue}) => {
-  let filters = {...getState().map.filters, obscured: obscured}
   if (!getState().owlLayerLoaded == "loaded"){
-    return rejectWithValue(filters)
+    return rejectWithValue(filters_new)
   }
-  loadFilterEffect(owlFeatureLayer, filters);
-  return fulfillWithValue(filters);
-})
-
-export const filterOwlLayerByYear = createAsyncThunk('map/filterOwlLayerByYear', async (year, {getState, rejectWithValue, fulfillWithValue}) => {
-  let filters = {...getState().map.filters,
-  year: year};
-  if (!getState().owlLayerLoaded == "loaded"){
-    return rejectWithValue(filters)
-  }
-  loadFilterEffect(owlFeatureLayer, filters);
-  return fulfillWithValue(filters);
+  loadFilterEffect(owlFeatureLayer, filters_new);
+  return fulfillWithValue(filters_new);
 })
 
 export const mapSlice = createSlice({
@@ -83,27 +69,11 @@ export const mapSlice = createSlice({
     .addCase(addOwlLayer.pending, (state => {
       state.owlLayerLoaded = "pending";
     }))
-    .addCase(filterOwlLayerBySpecies.rejected, (state, action) => {
+    .addCase(applyFilters.rejected, (state, action) => {
       state.filterStatus = "error";
       state.filters = action.payload;
     })
-    .addCase(filterOwlLayerBySpecies.fulfilled, (state, action) => {
-      state.filterStatus = "success";
-      state.filters = action.payload;
-    })
-    .addCase(filterObscuredSpecies.rejected, (state, action) => {
-      state.filterStatus = "error";
-      state.filters = action.payload;
-    })
-    .addCase(filterObscuredSpecies.fulfilled, (state, action) => {
-      state.filterStatus = "success";
-      state.filters = action.payload;
-    })
-    .addCase(filterOwlLayerByYear.rejected, (state, action) => {
-      state.filterStatus = "error";
-      state.filters = action.payload;
-    })
-    .addCase(filterOwlLayerByYear.fulfilled, (state, action) => {
+    .addCase(applyFilters.fulfilled, (state, action) => {
       state.filterStatus = "success";
       state.filters = action.payload;
     })
