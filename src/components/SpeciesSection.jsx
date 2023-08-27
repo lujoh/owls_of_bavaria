@@ -1,10 +1,10 @@
 import './SpeciesSection.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTaxa, selectOwlStatus } from '../features/owls/owlSlice';
-import { applyFilters} from '../features/map/mapSlice';
 import SpeciesCard from './SpeciesCard';
 import { useState } from 'react';
 import { MdOutlineExpandMore } from 'react-icons/md';
+import ClearFiltersButton from './ClearFiltersButton';
 
 
 function SpeciesSection({expandedSection, setExpandedSection}) {
@@ -32,7 +32,8 @@ function SpeciesSection({expandedSection, setExpandedSection}) {
                 <div className='speciesSection_button_section'>
                         <button onClick={() => setDetailVisibilityAll("expanded")}>Expand All Species</button>
                         <button onClick={() => setDetailVisibilityAll("collapsed")}>Collapse All Species</button>
-                        <button onClick={() => dispatch(applyFilters({species: null}))}>Clear Filters</button>
+                        <ClearFiltersButton selected_filters="Species" />
+                        <ClearFiltersButton selected_filters="All" />
                     </div>
                     <div className='speciesSection_cards'>
                         {taxaCardsContent}

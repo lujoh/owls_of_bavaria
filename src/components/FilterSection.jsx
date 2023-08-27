@@ -4,6 +4,7 @@ import { MdOutlineExpandMore } from 'react-icons/md';
 import { applyFilters, selectCurrentFilters } from '../features/map/mapSlice';
 import { selectYears } from '../features/owls/owlSlice';
 import { useRef } from 'react';
+import ClearFiltersButton from './ClearFiltersButton';
 
 function FilterSection({expandedSection, setExpandedSection}){
 
@@ -40,13 +41,13 @@ function FilterSection({expandedSection, setExpandedSection}){
             </div>
             <div className={expandedSection == "filter" ? "sidebar_section_body_expanded" : "sidebar_section_body_collapsed"}>
                 <div className='filterSection_filters'>
+                    <ClearFiltersButton selected_filters="All" />
                     <label>
                         <input type='checkbox' id='obscured' name='obscured' 
                         checked={currentFilters.obscured ? 'checked': ''}
                         onChange={(e) =>dispatch(applyFilters({obscured: e.target.checked}))} /> 
                         Hide obscured locations
                     </label> 
-                    <br />
                     
                     <label>
                         <input type='checkbox' id='allYears' name='allYears' 
@@ -55,7 +56,6 @@ function FilterSection({expandedSection, setExpandedSection}){
                          /> 
                         See all years
                     </label>
-                    <br />
                     <p>
                         Currently Showing: 
                         <span className="filterSection_range_value">

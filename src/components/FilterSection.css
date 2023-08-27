@@ -19,3 +19,6 @@ input{
     margin-left: 8px;
     font-weight: 700;
 }
+.filterSection_filters label{
+    display: block;
+}
