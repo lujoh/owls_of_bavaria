@@ -56,16 +56,25 @@ function FilterSection({expandedSection, setExpandedSection}){
                         See all years
                     </label>
                     <br />
+                    <p>
+                        Currently Showing: 
+                        <span className="filterSection_range_value">
+                            {currentFilters.year ? currentFilters.year : "All years"}
+                        </span>
+                    </p>
                     <label>
+                        Select a year: <br />
                         <input 
                         type='range' 
                         name='year'
+                        className='filterSection_range'
                         min={available_years.min} max={available_years.max} step={1} 
                         id='year'
                         list='years' 
                         onChange={(e) => setYearFilter(e.target)} 
-                        ref={yearRef} /> Select a year
+                        ref={yearRef} /> 
                     </label>
+
                     <datalist id='years'>
                         {yearlist}
                     </datalist>
