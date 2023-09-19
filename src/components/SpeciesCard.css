@@ -3,6 +3,11 @@
     color: #050304;
     padding: 4px;
 }
+.active_card{
+    border: 2px #050304;
+    border-style: solid none;
+    padding: 4px;
+}
 .speciesCard p{
     font-style: italic;
 }
@@ -20,6 +25,14 @@
     color: #050304;
     border: none;
     font-size: 22px;
+    padding: 2%;
+    margin: 1%;
+    border-radius: 5px;
+}
+button.speciesCard_button_active{
+    color: #FFF43F;
+    background-color: #39352c;
+    
 }
 .speciesCard_details_visible{
     display: block;

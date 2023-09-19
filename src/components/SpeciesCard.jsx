@@ -24,6 +24,7 @@ function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
     const removeFilterButton = <button
         aria-label='Remove {taxon.species_name} Filter'
         onClick={removeFilter}
+        className='speciesCard_button_active'
         >
             <MdFilterAltOff />
         </button>
@@ -60,7 +61,7 @@ function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
         }
     }, [detailVisibilityAll]); 
  return (
-    <div key={taxonId} className='speciesCard'>
+    <div key={taxonId} className={currentSpeciesFilter == taxonId ? 'speciesCard active_card' : 'speciesCard'}>
         <div className='speciesCard_main'>
             <div>
                 <img src={taxon.photo} width='75px' height='75px' />

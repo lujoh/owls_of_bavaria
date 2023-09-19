@@ -1,5 +1,5 @@
 import './SpeciesSection.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectTaxa, selectOwlStatus } from '../features/owls/owlSlice';
 import SpeciesCard from './SpeciesCard';
 import { useState } from 'react';
@@ -17,7 +17,6 @@ function SpeciesSection({expandedSection, setExpandedSection}) {
             return <SpeciesCard taxonId={taxonId} detailVisibilityAll={detailVisibilityAll} setDetailVisibilityAll={setDetailVisibilityAll}  key={taxonId} />
         })
     }
-    const dispatch = useDispatch();
     return (
         <section className='sidebar_section'>
             <div className='speciesSection_header'>
