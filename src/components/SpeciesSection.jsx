@@ -5,13 +5,14 @@ import SpeciesCard from './SpeciesCard';
 import { useState } from 'react';
 import { MdOutlineExpandMore } from 'react-icons/md';
 import ClearFiltersButton from './ClearFiltersButton';
+import configureApp from '../../configureApp';
 
 
 function SpeciesSection({expandedSection, setExpandedSection}) {
     const taxa = useSelector(selectTaxa);
     const [detailVisibilityAll, setDetailVisibilityAll] = useState("collapsed");
     const owlStatus = useSelector(selectOwlStatus);
-    let taxaCardsContent = <p>Loading Owl Data...</p>
+    let taxaCardsContent = <p>Loading {configureApp.SPECIES_NAME} Data...</p>
     if (owlStatus == "loaded") {
         taxaCardsContent = taxa.map((taxonId) => {
             return <SpeciesCard taxonId={taxonId} detailVisibilityAll={detailVisibilityAll} setDetailVisibilityAll={setDetailVisibilityAll}  key={taxonId} />
@@ -22,7 +23,7 @@ function SpeciesSection({expandedSection, setExpandedSection}) {
             <div className='speciesSection_header'>
                 <button className='sidebar_section_button'
                 onClick={() => setExpandedSection("species")}
-                >Owl Species
+                >{configureApp.SPECIES_NAME} Species
                  {expandedSection != "species" ?<MdOutlineExpandMore /> : ""}
                  </button>
             </div>

@@ -1,3 +1,5 @@
+import configureApp from "../../../configureApp";
+
 // Retrieve Owl data from iNaturalist
 export const getOwls = async (owlData) => {
     if (owlData.status != "not loaded" && owlData.status != "reload" || owlData.owls.length == 0){
@@ -55,7 +57,8 @@ function formatOwlData(input){
         } else {
             output.taxaById[observation.taxon.id] = {
                 id: observation.taxon.id,
-                species_name: observation.taxon.preferred_common_name,
+                // use common name if available, otherwise the scientific name
+                species_name: observation.taxon.preferred_common_name ? observation.taxon.preferred_common_name: observation.taxon.name,
                 species_scientific: observation.taxon.name,
                 count: 1,
                 threatened: observation.taxon.threatened,
@@ -74,7 +77,7 @@ function formatOwlData(input){
 
 //function to retrieve the next 200 results from iNaturalist based on the last retrieved id
 function runOwlQuery(last_id){
-    let result = fetch("https://api.inaturalist.org/v1/observations?captive=false&geo=true&licensed=true&photo_licensed=true&license=cc-by%2Ccc-by-nc%2Ccc-by-sa%2Ccc-by-nc-sa%2Ccc0&photo_license=cc-by%2Ccc-by-nc%2Ccc-by-sa%2Ccc-by-nc-sa%2Ccc0&place_id=12871&id_above=" + encodeURIComponent(last_id) + "&taxon_id=19350&per_page=200&order=asc&order_by=id")
+    let result = fetch("https://api.inaturalist.org/v1/observations?captive=false&geo=true&licensed=true&photo_licensed=true&license=cc-by%2Ccc-by-nc%2Ccc-by-sa%2Ccc-by-nc-sa%2Ccc0&photo_license=cc-by%2Ccc-by-nc%2Ccc-by-sa%2Ccc-by-nc-sa%2Ccc0&place_id=" + configureApp.PLACE_ID + "&id_above=" + encodeURIComponent(last_id) + "&taxon_id=" + configureApp.TAXON_ID +"&per_page=200&order=asc&order_by=id")
     .then((response) => response.json())
     .then((data) => {
         if(import.meta.env.VITE_DEBUG){
