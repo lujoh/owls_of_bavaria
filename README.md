@@ -80,6 +80,10 @@ In EXTENT you will want to save coordinates for a bounding box that will limit h
 
 You may also want to adjust the DEFAULT_ZOOM depending on the size of your desired location. This will be a positive integer.
 
+An optional thing you can do in order to get the area you are observing highlighted in darker grey is to replace the [NotBayern GeoJSON file](/src/assets/NotBayern.geojson) with a file for your location. 
+
+To do this, you can follow the steps in [this John Nelson tutorial](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/steal-this-faded-overlay-style-please/) up until the point where you get the polygon set up. Then you can export that polygon as a GeoJSON file and use it to replace the NotBayern.geojson file. (Keep the name of the file.)
+
 
 ## Showcase
 
@@ -96,6 +100,10 @@ You can filter the observations by species by selecting the filter button on the
 
 ![](docs_images/OwlsBavariaFiltered.png)
 
+Inside the Filters tab, you can also filter the observations by the year that they were observed and hide those observations that have an obscured location.
+
+![](docs_images/OwlsBavariaFiltered2.png)
+
 On the mobile version of the website, the map moves to the bottom of the page and the owl species cards move to a horizontally scrollable section at the top.
 
 ![](docs_images/OwlsBavariaMobile.png)
@@ -103,3 +111,7 @@ On the mobile version of the website, the map moves to the bottom of the page an
 When opening features on the mobile version of the website, the popup shows up below the map and can be expanded by clicking the arrow on the right.
 
 ![](docs_images/OwlsBavariaMobileObservation.png)
+
+For an example of a version of the website that has been customized with a different species and location, here you can see Jumping Spiders in Santa Cruz County, California.
+
+![](docs_images/JumpingSpidersCustomized.png)
