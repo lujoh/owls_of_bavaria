@@ -2,7 +2,7 @@ import './SpeciesCard.css'
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaxaById } from "../features/owls/owlSlice";
 import { applyFilters, selectCurrentSpeciesFilter } from '../features/map/mapSlice';
-import {MdFilterAltOff, MdFilterAlt, MdOutlineExpandMore, MdOutlineExpandLess} from "react-icons/md"
+import {MdFilterAlt, MdOutlineExpandMore, MdOutlineExpandLess} from "react-icons/md"
 import { useState, useEffect } from 'react';
 
 function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
@@ -26,7 +26,7 @@ function SpeciesCard({taxonId, detailVisibilityAll, setDetailVisibilityAll}) {
         onClick={removeFilter}
         className='speciesCard_button_active'
         >
-            <MdFilterAltOff />
+            <MdFilterAlt />
         </button>
     const showDetailsButton = <button 
         aria-label='See more about {taxon.species_name}' 
