@@ -1,17 +1,17 @@
 const configureApp = {
-    "SPECIES_NAME": "Owl",
+    "SPECIES_NAME": "Jumping Spider",
     // find the taxon ID by searching for the species name at https://api.inaturalist.org/v1/docs/#!/Taxa/get_taxa
-    "TAXON_ID": "19350", 
+    "TAXON_ID": "48139", 
     // find the place ID and center by searching for the place at https://api.inaturalist.org/v1/docs/#!/Places/get_places_autocomplete
-    "PLACE_ID": "12871",
-    "CENTER": [49.0,11.4],
+    "PLACE_ID": "418",
+    "CENTER": [37.0,-122.0],
     // you may have to experiment to find the ideal default zoom and extent
-    "DEFAULT_ZOOM": 7,
+    "DEFAULT_ZOOM": 9,
     "EXTENT": {
-        "xmin": 9.8,
-        "xmax":14.9,
-        "ymin":47.1,
-        "ymax":51.6
+        "ymin":36.3,
+        "ymax":38.5,
+        "xmin":-123.3,
+        "xmax":-121.5
     }
 }
 
